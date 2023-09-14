@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10,
-    fontFamily: "Roboto-Regular",
   },
   headerText: {
     fontSize: 25,

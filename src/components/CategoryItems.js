@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "Roboto-Regular",
 
     // BORDER STYLES
     borderColor: "black",

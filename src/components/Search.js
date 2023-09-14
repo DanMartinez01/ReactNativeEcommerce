@@ -38,7 +38,6 @@ const estilos = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     marginRight: 15,
-    fontFamily: "Roboto-Regular",
   },
 });
 

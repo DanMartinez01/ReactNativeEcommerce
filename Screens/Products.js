@@ -26,7 +26,6 @@ const Products = ({ category }) => {
     <View>
       <Header title="Productos" />
       <Search text={text} setText={setText} />
-
       <FlatList
         data={categoryProd}
         keyExtractor={products.id}
