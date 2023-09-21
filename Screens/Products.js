@@ -5,7 +5,7 @@ import Header from "../src/components/Header";
 import { products } from "../Data/products";
 import ProductItem from "../src/components/ProductItem";
 
-const Products = ({ category }) => {
+const Products = ({ category, navigation }) => {
   const [categoryProd, setCategoryProd] = useState([]);
   const [text, setText] = useState("");
 
@@ -32,7 +32,9 @@ const Products = ({ category }) => {
         // data={categoryProd}
         data={categoryProd}
         keyExtractor={products.id}
-        renderItem={({ item }) => <ProductItem item={item} />}
+        renderItem={({ item }) => (
+          <ProductItem item={item} navigation={navigation} />
+        )}
       />
     </View>
   );

@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 
-const CategoryItem = ({ item }) => {
+const CategoryItem = ({ item, navigation }) => {
   return (
-    <View>
+    <Pressable onPress={() => navigation.navigate("products")}>
       <Text style={styles.categoryText}>{item}</Text>
-    </View>
+    </Pressable>
   );
 };
 

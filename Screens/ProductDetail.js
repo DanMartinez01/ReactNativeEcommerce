@@ -2,20 +2,20 @@ import React from "react";
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import { products } from "../Data/products";
 
-function ProductDetail() {
-  const initialProd = products[0];
+function ProductDetail({ route }) {
+  const selectedItem = route.params.selectedItem;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}> {initialProd.title} </Text>
+      <Text style={styles.text}> {selectedItem.title} </Text>
       <Image
         style={styles.image}
-        source={{ uri: initialProd.images[0] }}
+        source={{ uri: selectedItem.images[0] }}
         resizeMode="cover"
       />
-      <Text style={styles.text}>Brand: {initialProd.brand}</Text>
-      <Text style={styles.text}>Description: {initialProd.description}</Text>
-      <Text style={styles.text}>Price: ${initialProd.price}</Text>
-      <Text style={styles.text}>Rating: {initialProd.rating}</Text>
+      <Text style={styles.text}>Brand: {selectedItem.brand}</Text>
+      <Text style={styles.text}>Description: {selectedItem.description}</Text>
+      <Text style={styles.text}>Price: ${selectedItem.price}</Text>
+      <Text style={styles.text}>Rating: {selectedItem.rating}</Text>
       <Pressable onPress={() => console.log("added")}>
         <Text>Add to cart</Text>
       </Pressable>

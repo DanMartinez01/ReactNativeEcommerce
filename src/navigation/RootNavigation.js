@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../../Screens/Home";
-// import Products from "../screens/Products";
-// import ProductDetail from "../screens/ProductDetail";
+import Products from "../../Screens/Products";
+import ProductDetail from "../../Screens/ProductDetail";
 // import Header from "../components/Header";
 
 const Stack = createNativeStackNavigator();
@@ -10,14 +10,24 @@ const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-      }}
+      initialRouteName="home"
+      screenOptions={
+        {
+          // headerShown: false,
+        }
+      }
     >
-      <Stack.Screen component={Home} name="Home" />
-      {/* <Stack.Screen component={Products} name="products" />
-      <Stack.Screen component={ProductDetail} name="productDetail" /> */}
+      <Stack.Screen component={Home} name="home" options={{ title: "Home" }} />
+      <Stack.Screen
+        component={Products}
+        name="products"
+        options={{ title: "Products" }}
+      />
+      <Stack.Screen
+        component={ProductDetail}
+        name="productDetail"
+        options={{ title: "Product details" }}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React from "react";
 
-const ProductItem = ({ item }) => {
+const ProductItem = ({ item, navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}> {item.title} </Text>
@@ -11,6 +11,13 @@ const ProductItem = ({ item }) => {
         source={{ uri: item.images[0] }}
         resizeMode="cover"
       />
+      <Pressable
+        onPress={() =>
+          navigation.navigate("productDetail", { selectedItem: item })
+        }
+      >
+        <Text>See product</Text>
+      </Pressable>
     </View>
   );
 };
