@@ -7,26 +7,29 @@ import ProductItem from "../src/components/ProductItem";
 
 const Products = ({ category }) => {
   const [categoryProd, setCategoryProd] = useState([]);
-  const [text, setText] = useState(null);
+  const [text, setText] = useState("");
 
   console.log("TEXTO", text);
-  console.log("Category Prod", categoryProd);
+  console.log("category products", categoryProd);
 
   useEffect(() => {
     const categoryProducts = products.filter((el) => el.category === category);
     setCategoryProd(categoryProducts);
 
     if (text) {
-      const titleProduct = products.filter((el) => el.title === text);
+      const titleProduct = products.filter(
+        (el) => el.title.toLowerCase() === text.toLowerCase()
+      );
       setCategoryProd(titleProduct);
     }
-  }, [text, category]);
+  }, [category, text]);
 
   return (
     <View>
-      <Header title="Productos" />
+      <Header title={category} />
       <Search text={text} setText={setText} />
       <FlatList
+        // data={categoryProd}
         data={categoryProd}
         keyExtractor={products.id}
         renderItem={({ item }) => <ProductItem item={item} />}
