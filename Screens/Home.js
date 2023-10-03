@@ -1,19 +1,30 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import Header from "../src/components/Header";
 import Categories from "../src/components/Categories";
 import Products from "./Products";
 import ProductItem from "../src/components/ProductItem";
-import Navbar from "../src/components/Navbar";
+import CategoryItem from "../src/components/CategoryItem";
+// import { categories } from "../Data/categories";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
 
 const Home = ({ navigation }) => {
+  const categories = useSelector((state) => state.homeSlice.allCategories);
+  console.log(categories);
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Header title="Categorías" />
-        <Products category="smartphones" navigation={navigation} />
-        <Categories navigation={navigation} />
+        {/* <Products navigation={navigation} /> */}
+
+        <FlatList
+          data={categories}
+          keyExtractor={(key) => key}
+          renderItem={({ item }) => (
+            <CategoryItem navigation={navigation} item={item} />
+          )}
+        />
       </View>
     </SafeAreaView>
   );

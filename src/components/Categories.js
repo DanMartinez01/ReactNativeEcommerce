@@ -1,7 +1,7 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import { categories } from "../../Data/categories";
-import CategoryItem from "../components/CategoryItems";
+import CategoryItem from "./CategoryItem";
 
 const Categories = ({ navigation }) => {
   return (

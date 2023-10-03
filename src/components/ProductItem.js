@@ -2,10 +2,10 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React from "react";
 
 const ProductItem = ({ item, navigation }) => {
+  console.log("item from productItem", item);
   return (
     <View style={styles.container}>
       <Text style={styles.text}> {item.title} </Text>
-
       <Image
         style={styles.image}
         source={{ uri: item.images[0] }}
