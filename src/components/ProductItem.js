@@ -1,50 +1,57 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { Avatar, Button, Card, Surface, useTheme } from "react-native-paper";
 import React from "react";
+import { colors } from "../theme/colors";
+import { useWindowDimensions } from "react-native";
+import { setProductSelected } from "../redux/slices/homeSlice";
+import { useDispatch } from "react-redux";
 
 const ProductItem = ({ item, navigation }) => {
-  console.log("item from productItem", item);
+  const { height, width } = useWindowDimensions();
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const onHandleProductDetail = () => {
+    console.log("Item pressed in Product Item", item);
+    console.log("image", item.images[0]);
+
+    dispatch(setProductSelected(item));
+
+    navigation.navigate("productDetail");
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}> {item.title} </Text>
-      <Image
-        style={styles.image}
-        source={{ uri: item.images[0] }}
-        resizeMode="cover"
-      />
-      <Pressable
-        onPress={() =>
-          navigation.navigate("productDetail", { selectedItem: item })
-        }
-      >
-        <Text>See product</Text>
-      </Pressable>
+      <Card style={{ marginTop: 40, width: 200, height: 300 }}>
+        <Card.Title title={item.title} />
+        <Card.Cover
+          source={{ uri: item.images[0] }}
+          style={{ width: 200, height: 200 }}
+        />
+        <Card.Actions>
+          <Pressable onPress={() => onHandleProductDetail()}>
+            <Text style={styles.text}>Detalle ---{">"}</Text>
+          </Pressable>
+        </Card.Actions>
+      </Card>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
-    marginVertical: 10,
-    borderColor: "#373d20",
-    borderRadius: 10,
-    borderWidth: 1,
-    height: 100,
-    justifyContent: "space-between",
-    flexDirection: "row",
+    justifyContent: "center",
+    flexDirection: "column",
     alignItems: "center",
+    margin: "auto",
+    marginTop: 20,
   },
   text: {
-    fontSize: 20,
-    fontWeight: "900",
-    marginLeft: 20,
-    color: "#373d20",
+    fontWeight: "200",
+    color: "white",
   },
-  image: {
-    marginRight: 10,
-    borderRadius: 100,
-    height: 60,
-    width: 60,
+  textMin: {
+    fontSize: 8,
+    width: "70%",
   },
 });
 
