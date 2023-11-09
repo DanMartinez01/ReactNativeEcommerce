@@ -1,31 +1,17 @@
-import { View, Text, FlatList, Image } from "react-native";
+import { FlatList, SafeAreaView, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import Search from "../src/components/Search";
 import Header from "../src/components/Header";
-import { products } from "../Data/products";
 import ProductItem from "../src/components/ProductItem";
 import { useSelector } from "react-redux";
+import { useGetProductsQuery } from "../src/services/ecApi";
 
-const Products = ({ category, navigation, route }) => {
+const Products = ({ route, navigation }) => {
   const [categoryProd, setCategoryProd] = useState([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState(null);
   const { item } = route.params;
-  console.log("items from productsJs", item);
-
   const products = useSelector((state) => state.homeSlice.allProducts);
-
-  // useEffect(() => {
-  //   const categoryProducts = products.filter((el) => el.category === category);
-  //   setCategoryProd(categoryProducts);
-
-  //   if (text) {
-  //     const titleProduct = products.filter(
-  //       (el) => el.title.toLowerCase() === text.toLowerCase()
-  //     );
-  //     setCategoryProd(titleProduct);
-  //   }
-  // }, [item, text]);
-
+  const { data, isLoading, isError } = useGetProductsQuery();
   const productsFilterByCategory = useSelector(
     (state) => state.homeSlice.productsFilterByCategory
   );
@@ -42,17 +28,19 @@ const Products = ({ category, navigation, route }) => {
   }, [text, item]);
 
   return (
-    <View>
+    <SafeAreaView style={{ backgroundColor: "black", flex: 1 }}>
       <Header title={item} navigation={navigation} />
+
       <Search text={text} setText={setText} />
+
       <FlatList
         data={categoryProd}
         keyExtractor={products.id}
         renderItem={({ item }) => (
-          <ProductItem item={item} navigation={navigation} />
+          <ProductItem navigation={navigation} item={item} />
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
